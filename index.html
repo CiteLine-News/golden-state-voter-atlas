@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#17324d">
+  <meta
+    name="description"
+    content="Search policies, compare candidates, and review official campaign material for the 2026 California governor's race."
+  >
+  <title>Golden State Voter Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">California Governor Research Desk</p>
+        <h1>Golden State Voter Atlas</h1>
+        <p class="hero-lede">
+          A civic research page for the June 2, 2026 California gubernatorial primary:
+          search policy positions, compare multiple candidates side by side, and click back to
+          official campaign material and statewide election sources.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#candidateDirectory">Browse the atlas</a>
+          <button class="button button-secondary" id="shareViewButton" type="button">Share this view</button>
+        </div>
+
+        <div class="hero-stats">
+          <article class="stat-card">
+            <span class="stat-label">Snapshot</span>
+            <strong>April 15, 2026</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Starter Slate</span>
+            <strong>9 major campaigns</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Compare Mode</span>
+            <strong>Up to 5 at once</strong>
+          </article>
+        </div>
+
+        <p class="status-note" id="statusMessage" aria-live="polite">
+          Search by issue, bookmark candidates, then use compare mode to surface overlaps and differences.
+        </p>
+      </div>
+
+      <aside class="briefing-card" aria-labelledby="briefingTitle">
+        <div class="briefing-header">
+          <p class="eyebrow">Election Briefing</p>
+          <h2 id="briefingTitle">2026 California Governor Timeline</h2>
+        </div>
+
+        <ol class="timeline">
+          <li>
+            <span class="timeline-date">March 26, 2026</span>
+            <strong>Certified candidate list published</strong>
+          </li>
+          <li>
+            <span class="timeline-date">April 3, 2026</span>
+            <strong>Military and overseas ballots may begin going out</strong>
+          </li>
+          <li>
+            <span class="timeline-date">May 4, 2026</span>
+            <strong>Counties start mailing ballots to other voters</strong>
+          </li>
+          <li>
+            <span class="timeline-date">June 2, 2026</span>
+            <strong>Top-two primary election</strong>
+          </li>
+          <li>
+            <span class="timeline-date">November 3, 2026</span>
+            <strong>General election</strong>
+          </li>
+        </ol>
+
+        <div class="briefing-callout">
+          <span class="callout-label">Important format</span>
+          <p>
+            California uses a top-two primary, so the two highest vote-getters advance to
+            November regardless of party.
+          </p>
+        </div>
+      </aside>
+    </header>
+
+    <main class="main-layout">
+      <section class="control-ribbon" id="candidateDirectory" aria-labelledby="directoryTitle">
+        <div class="control-top">
+          <div>
+            <p class="eyebrow">Curated Policy Atlas</p>
+            <h2 id="directoryTitle">Search candidates, policy lanes, and campaign material</h2>
+          </div>
+          <button class="link-button" id="clearFiltersButton" type="button">Clear filters</button>
+        </div>
+
+        <div class="search-row">
+          <label class="search-box" for="searchInput">
+            <span class="search-label">Search the race</span>
+            <input
+              id="searchInput"
+              name="search"
+              type="search"
+              autocomplete="off"
+              placeholder="Try housing, affordability, clean energy, ICE, tuition, CEQA..."
+            >
+          </label>
+
+          <label class="select-box" for="sortSelect">
+            <span class="search-label">Sort</span>
+            <select id="sortSelect" name="sort">
+              <option value="curated">Curated order</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="party">Party then name</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="toolbar-row">
+          <div class="filter-group" id="partyFilters" role="group" aria-label="Party filters"></div>
+
+          <label class="bookmark-toggle" for="bookmarksOnly">
+            <input id="bookmarksOnly" type="checkbox">
+            <span>Bookmarks only</span>
+          </label>
+        </div>
+
+        <div class="issue-strip" id="issueFilters" aria-label="Issue filters"></div>
+        <div class="active-filters" id="activeFilters"></div>
+      </section>
+
+      <section class="workspace" aria-label="Candidate workspace">
+        <div class="directory-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2 id="resultsHeading">Candidate directory</h2>
+            </div>
+            <p class="section-note" id="resultsMeta">
+              Starter slate built from official ballot information, voter guide content, and campaign websites.
+            </p>
+          </div>
+
+          <div class="candidate-grid" id="cardsGrid"></div>
+        </div>
+
+        <aside class="spotlight-panel" id="spotlightPanel" aria-live="polite"></aside>
+      </section>
+
+      <section class="compare-section" id="compareHub" aria-labelledby="compareTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Compare Desk</p>
+            <h2 id="compareTitle">Side-by-side candidate comparison</h2>
+          </div>
+          <p class="section-note">
+            Compare two or more candidates to see shared concerns, signature policies, and the clearest splits.
+          </p>
+        </div>
+
+        <div class="compare-toolbar">
+          <div class="compare-pills" id="comparePills"></div>
+          <div class="compare-actions">
+            <button class="button button-secondary" id="copyBriefButton" type="button">Copy compare brief</button>
+            <button class="button button-secondary" id="clearCompareButton" type="button">Clear compare</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card" id="compareSummary"></article>
+          <article class="summary-card" id="issueMap"></article>
+        </div>
+
+        <div class="compare-table-wrap" id="compareTable"></div>
+      </section>
+
+      <section class="upgrade-strip" aria-labelledby="upgradeTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Beyond Search</p>
+            <h2 id="upgradeTitle">What makes this more useful than a plain search page</h2>
+          </div>
+        </div>
+
+        <div class="upgrade-grid">
+          <article class="upgrade-card">
+            <span class="upgrade-kicker">Source traceability</span>
+            <h3>Every summary points back to campaign or state election material.</h3>
+            <p>
+              Instead of a vague result list, each candidate profile includes direct links to policy pages,
+              voter-guide text, and statewide ballot records.
+            </p>
+          </article>
+
+          <article class="upgrade-card">
+            <span class="upgrade-kicker">Difference detection</span>
+            <h3>The compare desk pulls out overlap, contrast, and signature proposals.</h3>
+            <p>
+              That makes it easier to see when candidates talk about the same issue but offer very
+              different governing approaches.
+            </p>
+          </article>
+
+          <article class="upgrade-card">
+            <span class="upgrade-kicker">Research workflow</span>
+            <h3>Bookmarks, shareable filters, and copyable briefs help you keep momentum.</h3>
+            <p>
+              You can build a shortlist, save a view in the URL, and export a concise comparison note
+              for later discussion.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="methodology">
+      <div>
+        <p class="eyebrow">Methodology</p>
+        <p>
+          This first version focuses on major active campaigns with enough public policy material to compare.
+          It uses a curated April 15, 2026 snapshot rather than the full certified field.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">Use Note</p>
+        <p>
+          This page is for research and comparison, not endorsement. Always verify live developments through
+          the linked official sources before making a final voting decision.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
