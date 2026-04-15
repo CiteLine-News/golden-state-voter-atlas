@@ -526,28 +526,19 @@ button {
   box-shadow: 0 18px 42px rgba(31, 95, 158, 0.12);
 }
 
-.candidate-card.is-compared::after,
-.spotlight-panel.is-compared::after {
-  content: "In compare";
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(23, 50, 77, 0.08);
-  color: var(--navy);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
 .candidate-top,
 .spotlight-top {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 14px;
   align-items: start;
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 
 .candidate-avatar {
@@ -597,6 +588,20 @@ button {
 .party-pill.republican {
   background: rgba(183, 51, 53, 0.11);
   color: var(--republican);
+}
+
+.compare-state-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(23, 50, 77, 0.08);
+  color: var(--navy);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .candidate-meta,

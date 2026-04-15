@@ -389,7 +389,10 @@ function renderCandidateCard(candidate) {
       <div class="candidate-top">
         <div class="candidate-avatar" aria-hidden="true">${initials(candidate.name)}</div>
         <div>
-          <span class="party-pill ${candidate.party.toLowerCase()}">${candidate.party}</span>
+          <div class="status-row">
+            <span class="party-pill ${candidate.party.toLowerCase()}">${candidate.party}</span>
+            ${compared ? `<span class="compare-state-pill">In compare</span>` : ""}
+          </div>
           <h3>${candidate.name}</h3>
           <p class="candidate-subhead">${candidate.designation}</p>
         </div>
@@ -459,13 +462,16 @@ function renderSpotlight() {
       <div class="candidate-avatar" aria-hidden="true">${initials(candidate.name)}</div>
       <div>
         <p class="eyebrow">Spotlight profile</p>
+        <div class="status-row">
+          <span class="party-pill ${candidate.party.toLowerCase()}">${candidate.party}</span>
+          ${compared ? `<span class="compare-state-pill">In compare</span>` : ""}
+        </div>
         <h2>${candidate.name}</h2>
         <p class="spotlight-subhead">${candidate.designation}</p>
       </div>
     </div>
 
     <div class="spotlight-meta">
-      <span><strong>Party:</strong> ${candidate.party}</span>
       <span><strong>Lane:</strong> ${candidate.lane}</span>
       <span><strong>Snapshot:</strong> ${snapshotDate}</span>
     </div>
